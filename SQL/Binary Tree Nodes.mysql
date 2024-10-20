@@ -1,1 +1,14 @@
+/* https://www.hackerrank.com/challenges/binary-search-tree-1/problem?isFullScreen=true */
+
+SELECT 
+    A.N, 
+    CASE 
+        WHEN A.P IS NULL THEN 'Root'  -- Node is root if parent is NULL
+        WHEN EXISTS (SELECT 1 FROM BST B WHERE B.P = A.N) THEN 'Inner'  -- Node is inner if it has children
+        ELSE 'Leaf'  -- Otherwise, it's a leaf node
+    END AS NodeType
+FROM 
+    BST A
+ORDER BY 
+    A.N;  -- Order by node value (N)
 
